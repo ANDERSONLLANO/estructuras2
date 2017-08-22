@@ -1,0 +1,765 @@
+#include <iostream>
+#include<string.h>
+#include<windows.h>
+#include<conio.h>
+#include<math.h>
+#include<math.h>
+#include <stdlib.h> 
+#include <time.h> 
+#define printf cout
+#define scanf cin
+using namespace std;
+/* algoritmo diseñado para crear un menu con diferentes funciones, incluyendo arreglos,condicionales entre otras.. */
+
+void cordxy( int x,int y)
+{
+COORD coord;
+coord.X=x;
+coord.Y=y;
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);	
+}
+void cuadropantalla(int ancho, int largo){
+	int i;
+	//columna
+	for(i=0;i<ancho;i++){
+		cordxy(5,i);printf<<"\263";
+		cordxy(largo,i);printf<<"\263";
+	}
+	//fila
+	for(i=6;i<largo;i++){
+		cordxy(i,0);printf<<"\304";
+		cordxy(i,ancho);printf<<"\304";
+	}
+	//esquina superior izquierda
+	cordxy(5,0);printf<<"\332";
+	//esquina superior derecha
+	cordxy(largo,0);printf<<"\277";
+	//esquina inferior derecha
+	cordxy(5,ancho);printf<<"\300";
+	//esquina inferior izquierda
+	cordxy(largo,ancho);printf<<"\331";
+}
+struct estudiantes{
+	char name[30];
+	char lastname[30];
+	float nota1,nota2,nota3,notdef;
+};
+struct competidor{
+	char name[30];
+	char lastname[30];
+	int edad;
+	int sexo;
+};
+struct promedio{
+	char name[30];
+	char sexo[10];
+	int edad,nota1,nota2,nota3,notadefi;
+};
+
+int main(int argc, char** argv) {
+	int i,j;
+	char a,b,c,A,B,C;
+	int suma=0;
+	int sumapar=0;
+	int sumaimpar=0;
+	int opcion=1;
+	while (opcion!=0){
+	system("color e1");
+	cuadropantalla(24,80);
+	cordxy(6,8);printf<<"MENU : "<<endl;
+	cordxy(6,10);printf<<" 1. para ciclo while "<<endl;
+	cordxy(6,11);printf<<" 2. para ciclo for "<<endl;
+	cordxy(6,12);printf<<" 3. para el array "<<endl;
+	cordxy(6,13);printf<<" 4. para switch "<<endl;
+	cordxy(6,14);printf<<" 5. para matrices "<<endl;
+	cordxy(6,15);printf<<" 6. para estructura "<<endl;
+	//cordxy(6,16);printf<<" 7. para punteros "<<endl;
+	cordxy(6,16);printf<<" 0. salir "<<endl;
+	cordxy(6,18);printf<<" por favor digite la opcion: "<<endl;
+	cordxy(34,18);scanf>>opcion;
+	switch(opcion){
+		case 1:{
+			system("cls");
+			system("color a1");
+			char vocal=1;
+			while(vocal!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" CICLO WHILE : "<<endl;
+				cordxy(6,10);printf<<" a. suma de los numeros del 1 al 100"<<endl;
+				cordxy(6,11);printf<<" b. suma de los numeros pares del 1 al 50"<<endl;
+			    cordxy(6,12);printf<<" c. suma de los numeros impares del 1 al 50"<<endl;
+			    cordxy(6,15);printf<<" Seleccione una de las vocales:"<<endl;
+			    cordxy(38,15);scanf>>vocal;
+			    switch(vocal){
+			    	case 'a':{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		i=1;
+			    		while(i<=100){
+			    			cordxy(8,17);printf<<" la suma de los primeros 100 numeros es: "<<(suma=suma+i)<<endl;
+			    			i++;
+						}
+						system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						i=0;
+						while(i<=50){
+							cordxy(8,17);printf<<" la suma de los primeros 50 numeros pares es: "<<(sumapar=sumapar+i)<<endl;
+						i+=2;	
+						}
+						system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						i=1;
+						while(i<=50){
+							cordxy(8,17);printf<<" la suma de los primeros 50 numeros impares es: "<<(sumaimpar=sumaimpar+i)<<endl;
+							i+=2;
+						}
+						system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" El caracter ingresado no coincide "<<endl;
+						break;
+					}
+				}
+		    break;
+			}	
+		}
+		case 2:{
+			system("cls");
+			system("color e1");
+			char letra=1;
+			while(letra!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" CICLO FOR : "<<endl;
+				cordxy(6,10);printf<<" a. Tabla de multiplicar de un valor n"<<endl;
+				cordxy(6,11);printf<<" b. factorial de un numero n"<<endl;
+			    cordxy(6,12);printf<<" c. numero fibonacci"<<endl;
+			    cordxy(6,14);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,14);scanf>>letra;
+			    switch(letra){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int a1,b1,d,e;
+	                    cordxy(6,2);printf<<" ingrese un multiplicador: "<<endl;
+	                    cordxy(33,2);scanf>>a1;
+	                    e=3;
+	                    for(i=1;i<=20;i++){
+		                   d=a1*i;
+		                   cordxy(40,e);printf<<a1<<" * "<<i<<" = "<<d<<endl;
+		                   e++;
+	                    }
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    float a,i,factor,lnum;
+                        factor=1;
+                        cordxy(6,9);printf<< "ingrese un numero natural" <<endl;
+                        cordxy(6,10);scanf>>lnum;
+                        for (i=1;i<=lnum;i++) {
+                        cordxy(6,12);printf<< i << "=1";
+                        for (a=2;a<=i;a++) {
+                        factor= factor*a;
+                        printf << "*" << a;
+                        }
+                        printf<< "=" <<factor<<endl;
+                        
+                       }
+                       system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						 int LNumero,LSuma,n,f;
+                         cordxy(2,3);printf<<" los primeros 50 numeros de fibonacci: "<<endl;
+                         LNumero=0;
+                         LSuma=1;
+                         f=3;
+                         for(i=1;i<=50;i++){
+                         cordxy(42,f);printf<<LNumero<<endl;
+                         f++;
+                         n=LNumero+LSuma;
+                         LNumero=LSuma;
+                         LSuma=n;
+                        }
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 3:{
+			system("cls");
+			system("color e1");
+			char letras=1;
+			while(letras!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" ARRAYS : "<<endl;
+				cordxy(6,10);printf<<" a. arreglo unidimensional de cuatro"<<endl;
+				cordxy(6,11);printf<<" b. multiplicacion de dos arreglos "<<endl;
+			    cordxy(6,12);printf<<" c. arreglo dimensional 4*4"<<endl;
+			    cordxy(6,14);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,14);scanf>>letras;
+			    switch(letras){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		float decimales[4];
+			    		int v=10;
+			    		int w=11;
+			    		int x=6;
+	                    cordxy(6,8);printf<<"ingrese a continuacion los sgtes decimales: 1.[32.583], 2.[11.239], 3.[45.781] y 4.[22.237]"<<endl;
+	                    for(i=0;i<=3;i++){
+	                    	cordxy(6,v++);printf<<"ingrese el decimal: "<<endl;
+		                    cordxy(6,w++);scanf>>decimales[i];
+		                }
+		                system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+		                    for(i=0;i<=3;i++){
+		                    cordxy(8,x++);printf<<decimales[i]<<endl;
+		                }
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    float num1[1];
+					    float num2[1];
+					    float num3[1];
+			            cordxy(6,8);printf<<" por favor ingrese un valor para el primer array: "<<endl;
+						cordxy(6,9);scanf>>num1[1];
+						cordxy(6,10);printf<<" por favor ingrese un valor para el segundo array: "<<endl;
+						cordxy(6,11);scanf>>num2[1];
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+		                num3[1]=num1[1]*num2[1]*0.1;
+		                cordxy(6,13);printf<<" la multiplicacion de este array es: "<<num3[1]<<endl;
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int m=6;
+			    		int k=7;
+			    		int r=2, s=2, t=2, u=2;
+			    		//int cuadrado= (^ 2);
+						//int cubo= ^ 3;
+						//int cuatro= ^ 4; 
+			    		int j;
+						float dimension[4];
+						for (i=0;i<=3;i++){
+						     	cordxy(6,m++);printf<<" ingrese un valor deseado: "<<endl;
+							    cordxy(6,k++);scanf>>dimension[i];
+						    }
+						for (i=0;i<=3;i++){
+							cordxy(r+=15,12);printf<<dimension[i];
+						    cordxy(s+=15,13);printf<<pow(dimension[i],2);
+						    cordxy(t+=15,14);printf<<pow(dimension[i],3);
+						    cordxy(u+=15,15);printf<<pow(dimension[i],4);
+						}
+						printf<<endl;
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 4:{
+			system("cls");
+			system("color e1");
+			char vocals=1;
+			while(vocals!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" SWITCH : "<<endl;
+				cordxy(6,10);printf<<" a. Mes del sistema"<<endl;
+				cordxy(6,11);printf<<" b. numero ascii de una vocal "<<endl;
+			    cordxy(6,12);printf<<" c. Numero ascii de un numero del 1 al 9"<<endl;
+			    cordxy(6,14);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,14);scanf>>vocals;
+			    switch(vocals){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int dia;
+                        int mes;
+                    	int anho;
+                    	cordxy(6,6);cout<<" por favor ingrese un numero del 1 al 31 para el dia "<<endl;
+                    	cordxy(6,7);scanf>>dia;
+                    	cordxy(6,8);cout<<" por favor ingrese un numero del 1 al 12 para el mes "<<endl;
+                    	cordxy(6,9);scanf>>mes;
+                    	cordxy(6,10);cout<<" ingrese el a\244o"<<endl;
+                    	cordxy(6,11);scanf>>anho;
+                    	switch (mes){
+                    	case 1:
+		                   cordxy(6,15);printf<< dia <<" de enero del "<< anho<<endl;
+		                 break;
+		                case 2:
+		                	cordxy(8,15);printf<< dia<< " de febrero del "<< anho<<endl;
+		                    break;
+		                case 3:
+		    	            cordxy(8,15);printf<< dia<< " de marzo del "<< anho<<endl;
+		                    break;
+		                case 4:
+		        	        cordxy(8,15);printf<< dia <<" de abril del " <<anho<<endl;
+		                    break;
+		                case 5:
+		            	    cordxy(8,15); printf<< dia  <<" de mayo del "<< anho<<endl;
+		                    break;
+		                case 6:
+		                	cordxy(8,15);printf<<  dia << " de junio del "<< anho<<endl;
+		                    break;
+		                case 7:
+		                    cordxy(8,15);printf<< dia <<" de julio del "<< anho<<endl;
+		                    break;
+		                case 8:
+		                	cordxy(8,15);printf<< dia <<" de agosto del "<< anho<<endl;
+                            break;
+                        case 9:
+		                	cordxy(8,15);printf<< dia << " de septiembre del "<< anho<<endl;
+		                    break;
+		                case 10:
+		                	cordxy(8,15);printf<< dia << " de octubre del " << anho<<endl;
+		                    break;
+		                case 11:
+		                	cordxy(8,15);printf<< dia <<" de noviembre del "<< anho<<endl;
+		                    break;
+		                case 12:
+		                    cordxy(8,15);printf<< dia << " de diciembre del "<< anho<<endl;
+		                    break;	
+		                default :
+		                    cordxy(8,15);printf<< " numero de mes no valido "<<endl;
+                    	}
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    char vucales;
+					    cordxy(6,6);printf<<" ingrese una vocal: "<<endl;
+					    cordxy(6,7);scanf>>vucales;
+					    switch (vucales){
+					    	case 'a':{
+					    		cordxy(8,15);printf<<" el codigo ascii de la vocal 'a' es: alt + 97"<<endl;
+								break;
+							}
+							case 'e':{
+					    		cordxy(8,15);printf<<" el codigo ascii de la vocal 'e' es: alt + 101"<<endl;
+								break;
+							}
+							case 'i':{
+					    		cordxy(8,15);printf<<" el codigo ascii de la vocal 'i' es: alt + 105"<<endl;
+								break;
+							}
+							case 'o':{
+					    		cordxy(8,15);printf<<" el codigo ascii de la vocal 'o' es: alt + 111"<<endl;
+								break;
+							}
+							case 'u':{
+					    		cordxy(8,15);printf<<" el codigo ascii de la vocal 'u' es: alt + 117"<<endl;
+								break;
+							}
+							default :{
+								cordxy(8,15);printf<<" el caracter ingreso no coincide "<<endl;
+								break;
+							}	
+						}
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    	    int number;
+					    cordxy(6,6);printf<<" ingrese un numero natural ( 1 - 9 ): "<<endl;
+					    cordxy(6,7);scanf>>number;
+					    switch (number){
+					    	case 1:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 1 es: alt + 49"<<endl;
+								break;
+							}
+							case 2:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 2 es: alt + 50"<<endl;
+								break;
+							}
+							case 3:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 3 es: alt + 51"<<endl;
+								break;
+							}
+							case 4:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 4 es: alt + 52"<<endl;
+								break;
+							}
+							case 5:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 5 es: alt + 53"<<endl;
+								break;
+							}
+							case 6:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 6 es: alt + 54"<<endl;
+								break;
+							}
+							case 7:{
+					    		cordxy(8,15);printf<<" el codigo ascii de lal numero 7 es: alt + 55"<<endl;
+								break;
+							}
+							case 8:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 8 es: alt + 56"<<endl;
+								break;
+							}
+							case 9:{
+					    		cordxy(8,15);printf<<" el codigo ascii del numero 9 es: alt + 57"<<endl;
+								break;
+							}
+							default :{
+								cordxy(8,15);printf<<" el caracter ingreso no coincide "<<endl;
+								break;
+							}	
+						}
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		
+		case 5:{
+			system("cls");
+			system("color e1");
+			char letter=1;
+			while(letter!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" MATRICES : "<<endl;
+				cordxy(6,10);printf<<" a. suma de matrices simples"<<endl;
+				cordxy(6,11);printf<<" b. Matriz 3*3 llenado manual y resultado en suma"<<endl;
+			    cordxy(6,12);printf<<" c. Matriz 3*3 llenado automatico  "<<endl;
+			    cordxy(6,14);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,14);scanf>>letter;
+			    switch(letter){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+                        int i;
+                    	int a[3];
+                    	int b[3];
+                    	int c[3];
+                    	int s=3;
+                    	int t=4;
+                    	int r=10;
+                    	int q=11;
+                    	int w=18;
+                    	for (i=0;i<=2;i++){
+		                    cordxy(6,s++);printf<<" ingrese un valor para a: "<<endl;
+		                    cordxy(6,t++);scanf>>a[i];
+                        	}
+	                    for (i=0;i<=2;i++){
+		                    cordxy(6,r++);printf<<" ingrese un valor para b: "<<endl;
+		                    cordxy(6,q++);scanf>>b[i];
+                        	}
+	                    for (i=0;i<=2;i++){
+	                    	c[i]=a[i]+b[i];
+	                        }
+	                    for (i=0;i<=2;i++){ 
+	                        cordxy(6,w++);printf<<" la suma de los vectores en C[3]*[3]: "<<c[i]<<endl;
+                            } 
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int s=2;
+			    		int r=3;
+			    		int w=13;
+					    int matriz[3][3];
+					    int matrisuma[3][3];
+					    for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+					    		cordxy(6,s++);printf<<" ingrese un valor para la matriz[3]*[3]: "<<endl;
+					    		cordxy(6,r++);scanf>>matriz[i][j];
+							}
+						}
+						for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+						      matrisuma[3][3]=matriz[i][j]+matriz[i][j];
+						      cordxy(6,w++);printf<<matrisuma[3][3];
+						    }
+					    }
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int w=6;
+			    		int s=6;
+					    int matriz[3][3];
+					    srand(time(0));
+					    for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+					    	 matriz[3][3]=rand();
+						     cordxy(6,w++);printf<<matriz[3][3]<<endl;
+							}
+						}
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 6:{
+			system("cls");
+			system("color e1");
+			char letters=1;
+			while(letters!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" ESTRUCTURAS : "<<endl;
+				cordxy(6,10);printf<<" a. Estructura de Nombre y notas de n estudiantes"<<endl;
+				cordxy(6,11);printf<<" b. Estructura de Competencia segun edad "<<endl;
+			    cordxy(6,12);printf<<" c. Estructura de promedios y de n alumnos "<<endl;
+			    cordxy(6,15);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,15);scanf>>letters;
+			    switch(letters){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int n;
+			    		int s=12;
+			    		cordxy(6,2);printf<<" ingrese la cantidad de estudiantes que desea registrar: "<<endl;
+			    		cordxy(62,2);scanf>>n;
+			    		estudiantes notas[n];
+	                    float notdef;
+	                    int i;
+	                    cordxy(6,4);printf<<" por favor relacione los siguientes datos: "<<endl;
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	scanf.ignore(256,'\n'); 
+                        cordxy(6,5);printf<<" ingrese sus nombres: "<<endl;
+                        cordxy(6,6);scanf.getline(notas[n].name,30);
+                        cordxy(6,7);printf<<" ingrese sus apellidos: "<<endl;
+                        cordxy(6,8);scanf.getline(notas[n].lastname, 30);
+                        cordxy(6,9);printf<<" ingrese su primer nota del corte1: "<<endl;
+                        cordxy(6,10);scanf>>notas[n].nota1;
+                        cordxy(6,11);printf<<" ingrese  su segunda nota del corte2: "<<endl;
+                        cordxy(6,12);scanf>>notas[n].nota2;
+                        cordxy(6,13);printf<<" ingrese su tercer nota del corte3: "<<endl;
+                        cordxy(6,14);scanf>>notas[n].nota3;
+                        notdef=((notas[n].nota1+notas[n].nota2+notas[n].nota3)/3);
+                        cordxy(6,18);printf<<"estudiante: "<<notas[n].name <<" "<< notas[n].lastname<< " su calificacion definitiva es: "<<notdef<<endl;
+                        system("pause");
+                        system("cls");
+	 				    }
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		for (i=1;i<=n;i++){
+			    			cordxy(6,s++);printf<<"estudiante: "<<notas[n].name <<" "<< notas[n].lastname<< " su calificacion definitiva es: "<<notdef<<endl;
+						}
+	 				    
+	 				    system("pause");
+	 				    break;
+	 			    }
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    int n;
+			    		int s=12;
+			    		cordxy(6,2);printf<<" ingrese la cantidad de competidores que desea registrar: "<<endl;
+			    		cordxy(63,2);scanf>>n;
+			    		competidor categoria[n];
+	                    int i,edad;
+	                    cordxy(6,4);printf<<" por favor relacione los siguientes datos: "<<endl;
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	scanf.ignore(256,'\n'); 
+                        cordxy(6,5);printf<<" ingrese sus nombres: "<<endl;
+                        cordxy(6,6);scanf.getline(categoria[n].name,30);
+                        cordxy(6,7);printf<<" ingrese sus apellidos: "<<endl;
+                        cordxy(6,8);scanf.getline(categoria[n].lastname,30);
+                        cordxy(6,9);printf<<" ingrese su sexo, digitando 1.para hombre 2.si es mujer: "<<endl;
+                        cordxy(6,10);scanf>>categoria[n].sexo;
+                        cordxy(6,11);printf<<" ingrese su edad: "<<endl;
+                        cordxy(6,12);scanf>>categoria[n].edad;
+                        if (categoria[n].edad<=15){
+                        	 cordxy(6,18);printf<<"competidor: "<<categoria[n].name <<" "<< categoria[n].lastname<< " su categoria definitiva es: "<<" "<<"INFANTIL"<<endl;
+						}else{
+							if (categoria[n].edad<=30){
+								 cordxy(6,18);printf<<"competidor: "<<categoria[n].name <<" "<< categoria[n].lastname<< " su categoria definitiva es: "<<" "<<"JUVENIL"<<endl;
+							}else{
+								 cordxy(6,18);printf<<"competidor: "<<categoria[n].name <<" "<< categoria[n].lastname<< " su categoria definitiva es: "<<" "<<"ADULTO"<<endl;
+							}
+						}
+                        system("pause");
+                        system("cls");
+	 				    }
+			    	
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int n,i;
+			    		int s=12;
+			    		cordxy(6,2);printf<<" ingrese la cantidad de alumnos que desea registrar: "<<endl;
+			    		cordxy(60,2);scanf>>n;
+			    		promedio alumno[n];
+	                    float notidefi;
+	                    cordxy(6,4);printf<<" por favor relacione los siguientes datos: "<<endl;
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	scanf.ignore(256,'\n'); 
+                        cordxy(6,5);printf<<" ingrese sus nombres: "<<endl;
+                        cordxy(6,6);scanf.getline(alumno[n].name,30);
+                        cordxy(6,7);printf<<" ingrese su genero: "<<endl;
+                        cordxy(6,8);scanf.getline(alumno[n].sexo, 30);
+                        cordxy(6,9);printf<<" ingrese su edad: "<<endl;
+                        cordxy(6,10);scanf>>alumno[n].edad;
+                        cordxy(6,11);printf<<" ingrese su primer nota del corte1: "<<endl;
+                        cordxy(6,12);scanf>>alumno[n].nota1;
+                        cordxy(6,13);printf<<" ingrese  su segunda nota del corte2: "<<endl;
+                        cordxy(6,14);scanf>>alumno[n].nota2;
+                        cordxy(6,15);printf<<" ingrese su tercer nota del corte3: "<<endl;
+                        cordxy(6,16);scanf>>alumno[n].nota3;
+                        notidefi=((alumno[n].nota1+alumno[n].nota2+alumno[n].nota3)/3);
+                        cordxy(6,20);printf<<"alumno: "<<alumno[n].name <<" "<<"genero:"<< alumno[n].sexo<<" "<<"edad: "<<alumno[n].edad<<" su calificacion definitiva es: "<<notidefi<<endl;
+                        system("pause");
+                        system("cls");
+	 				    }
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		for (i=1;i<=n;i++){
+			    			cordxy(6,s++);printf<<"alumno: "<<alumno[n].name <<" "<<"genero:"<< alumno[n].sexo<<" "<<"edad: "<<alumno[n].edad<<" su calificacion definitiva es: "<<notidefi<<endl;
+						}
+                        system("pause");
+						break;
+					}
+				
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}
+	/*	case 7:{
+			system("cls");
+			system("color e1");
+			char letter=1;
+			while(letter!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf<<" PUNTEROS : "<<endl;
+				cordxy(6,10);printf<<" a. "<<endl;
+				cordxy(6,11);printf<<" b. "<<endl;
+			    cordxy(6,12);printf<<" c. "<<endl;
+			    cordxy(6,14);printf<<" Seleccione una de las letras:"<<endl;
+			    cordxy(38,14);scanf>>letter;
+			    switch(letter){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf<<" la letra ingresada no coincide "<<endl;
+						break;
+					}
+				}
+			break;	
+			}
+		}*/
+		case 0:{
+			system("cls");
+			system("color a1");
+			cuadropantalla(24,80);
+			cordxy(8,12);printf<<" GOD BYE "<<endl;
+			break;
+		}
+		default :{
+			system("cls");
+			system("color a1");
+			cuadropantalla(24,80);
+			cordxy(8,12);printf<<" El caracter ingresado no coincide "<<endl;
+			system("pause");
+			break;
+		}
+	}
+	}
+    system("pause");
+	return 0;
+}
