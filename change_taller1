@@ -1,0 +1,766 @@
+#include <iostream>
+#include<string.h>
+#include<windows.h>
+#include<conio.h>
+#include<conio.h>
+#include<math.h>
+#include <stdlib.h> 
+#include <time.h> 
+using namespace std;
+/* algoritmo diseñado para crear un menu con diferentes funciones, incluyendo arreglos,condicionales entre otras.. */
+
+void cordxy( int x,int y)
+{
+COORD coord;
+coord.X=x;
+coord.Y=y;
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);	
+}
+void cuadropantalla(int ancho, int largo){
+	int i;
+	//columna
+	for(i=0;i<ancho;i++){
+		cordxy(5,i);printf("\263");
+		cordxy(largo,i);printf("\263");
+	}
+	//fila
+	for(i=6;i<largo;i++){
+		cordxy(i,0);printf("\304");
+		cordxy(i,ancho);printf("\304");
+	}
+	//esquina superior izquierda
+	cordxy(5,0);printf("\332");
+	//esquina superior derecha
+	cordxy(largo,0);printf("\277");
+	//esquina inferior derecha
+	cordxy(5,ancho);printf("\300");
+	//esquina inferior izquierda
+	cordxy(largo,ancho);printf("\331");
+}
+struct estudiantes{
+	char name[30];
+	char lastname[30];
+	float nota1,nota2,nota3,notdef;
+};
+struct competidor{
+	char name[30];
+	char lastname[30];
+	int edad;
+	int sexo;
+};
+struct promedio{
+	char name[30];
+	char sexo[10];
+	int edad,nota1,nota2,nota3,notadefi;
+};
+
+int main(int argc, char** argv) {
+	int i,j;
+	char a,b,c,d;
+	int suma=0;
+	int sumapar=0;
+	int sumaimpar=0;
+	int opcion=1;
+	while (opcion!=0){
+	system("color e1");
+	cuadropantalla(24,80);
+	cordxy(6,8);printf("MENU : ");
+	cordxy(6,10);printf(" 1. para ciclo while ");
+	cordxy(6,11);printf(" 2. para ciclo for ");
+	cordxy(6,12);printf(" 3. para el array ");
+	cordxy(6,13);printf(" 4. para switch ");
+	cordxy(6,14);printf(" 5. para matrices ");
+	cordxy(6,15);printf(" 6. para estructura ");
+	//cordxy(6,16);printf(" 7. para punteros \n");
+	cordxy(6,16);printf(" 0. salir");
+	cordxy(6,18);printf(" por favor digite la opcion: \n");
+	cordxy(34,18);scanf("%d ",&opcion);
+	switch(opcion){
+		case 1:{
+			system("cls");
+			system("color a1");
+			char vocal=1;
+			while(vocal!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" CICLO WHILE : ");
+				cordxy(6,10);printf(" a. suma de los numeros del 1 al 100. ");
+				cordxy(6,11);printf(" b. suma de los numeros pares del 1 al 50. ");
+			    cordxy(6,12);printf(" c. suma de los numeros impares del 1 al 50. ");
+			    cordxy(6,15);printf(" Seleccione una de las vocales:. ");
+			    cordxy(38,15);scanf("%c ",&vocal);
+			    switch(vocal){
+			    	case 'a':{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		i=1;
+			    		while(i<=100){
+			    			suma=suma+i;
+			    			cordxy(8,17);printf(" la suma de los primeros 100 numeros es: %d ",suma);
+			    			i++;
+						}
+						system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						i=0;
+						while(i<=50){
+							sumapar=sumapar+i;
+							cordxy(8,17);printf(" la suma de los primeros 50 numeros pares es:%d ",sumapar);
+						i+=2;	
+						}
+						system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						i=1;
+						sumaimpar=sumaimpar+i;
+						while(i<=50){
+							cordxy(8,17);printf(" la suma de los primeros 50 numeros impares es: %d ",sumaimpar);
+							i+=2;
+						}
+						system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" El caracter ingresado no coincide. \n");
+						break;
+					}
+				}
+		    break;
+			}	
+		}
+		case 2:{
+			system("cls");
+			system("color e1");
+			char letra=1;
+			while(letra!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" CICLO FOR : ");
+				cordxy(6,10);printf(" a. Tabla de multiplicar de un valor n ");
+				cordxy(6,11);printf(" b. factorial de un numero n ");
+			    cordxy(6,12);printf(" c. numero fibonacci ");
+			    cordxy(6,14);printf(" Seleccione una de las letras: ");
+			    cordxy(38,14);scanf("%c ",&letra);
+			    switch(letra){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int a1,b1,d,e;
+	                    cordxy(6,2);printf(" ingrese un multiplicador: ");
+	                    cordxy(33,2);scanf("%d ",&a1);
+	                    e=3;
+	                    for(i=1;i<=20;i++){
+		                   d=a1*i;
+		                   cordxy(40,e);printf("%d * %d = %d ",a1, i, d);
+		                   e++;
+	                    }
+	                    system("pause");
+						break;
+					}
+
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    int factor;
+						int  a,i,lnum;
+                        factor=1;
+                        cordxy(6,9);printf("ingrese un numero natural  \n" );
+                        cordxy(6,10);scanf("%d",&lnum);
+                        for (i=1;i<=lnum;i++) {
+                        cordxy(6,12);printf("%d, =1", i );
+                        for (a=2;a<=i;a++) {
+                        factor= factor*a;
+                        printf ( " *  %d \n " ,a);
+                        }
+                        printf( "=  %d \n", factor);
+                        
+                       }
+                       system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+						 int LNumero,LSuma,n,f;
+                         cordxy(2,3);printf(" los primeros 50 numeros de fibonacci: ");
+                         LNumero=0;
+                         LSuma=1;
+                         f=3;
+                         for(i=1;i<=50;i++){
+                         cordxy(42,f);printf("%d ",LNumero);
+                         f++;
+                         n=LNumero+LSuma;
+                         LNumero=LSuma;
+                         LSuma=n;
+                        }
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide. \n");
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 3:{
+			system("cls");
+			system("color e1");
+			char letras=1;
+			while(letras!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" ARRAYS : ");
+				cordxy(6,10);printf(" a. arreglo unidimensional de cuatro");
+				cordxy(6,11);printf(" b. multiplicacion de dos arreglos ");
+			    cordxy(6,12);printf(" c. arreglo dimensional 4*4");
+			    cordxy(6,14);printf(" Seleccione una de las letras:");
+			    cordxy(38,14);scanf("%c ",&letras);
+			    switch(letras){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		float decimales[4];
+			    		int v=10;
+			    		int w=11;
+			    		int x=6;
+	                    cordxy(6,8);printf("ingrese a continuacion los sgtes decimales: 1.[32.583], 2.[11.239], 3.[45.781] y 4.[22.237]");
+	                    for(i=0;i<=3;i++){
+	                    	cordxy(6,v++);printf("ingrese el decimal: ");
+		                    cordxy(6,w++);scanf("%f",&decimales[i]);
+		                }
+		                system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+		                    for(i=0;i<=3;i++){
+		                    cordxy(8,x++);printf("%f",decimales[i]);
+		                }
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    float num1[1];
+					    float num2[1];
+					    float num3[1];
+			            cordxy(6,8);printf(" por favor ingrese un valor para el primer array: ");
+						cordxy(6,9);scanf("%f",&num1[1]);
+						cordxy(6,10);printf(" por favor ingrese un valor para el segundo array: ");
+						cordxy(6,11);scanf("%f ",&num2[1]);
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+		                num3[1]=num1[1]*num2[1]*0.1;
+		                cordxy(6,13);printf(" la multiplicacion de este array es: %f ",num3[1]);
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int m=6;
+			    		int k=7;
+			    		int r=2, s=2, t=2, u=2;
+			    		//int cuadrado= (^ 2);
+						//int cubo= ^ 3;
+						//int cuatro= ^ 4; 
+			    		int j;
+						float dimension[4];
+						for (i=0;i<=3;i++){
+						     	cordxy(6,m++);printf(" ingrese un valor deseado: ");
+							    cordxy(6,k++);scanf("%f",&dimension[i]);
+						    }
+						for (i=0;i<=3;i++){
+							cordxy(r+=15,12);printf("%f",dimension[i]);
+						    cordxy(s+=15,13);printf("%f",(pow(dimension[i],2)));
+						    cordxy(t+=15,14);printf("%f",(pow(dimension[i],3)));
+						    cordxy(u+=15,15);printf("%f",(pow(dimension[i],4)));
+						}
+						printf("\n");
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide ");
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 4:{
+			system("cls");
+			system("color e1");
+			char vocals=1;
+			while(vocals!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" SWITCH : ");
+				cordxy(6,10);printf(" a. Mes del sistema");
+				cordxy(6,11);printf(" b. numero ascii de una vocal ");
+			    cordxy(6,12);printf(" c. Numero ascii de un numero del 1 al 9");
+			    cordxy(6,14);printf(" Seleccione una de las letras:");
+			    cordxy(38,14);scanf("%c ",&vocals);
+			    switch(vocals){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int dia;
+                        int mes;
+                    	int anho;
+                    	cordxy(6,6);printf(" por favor ingrese un numero del 1 al 31 para el dia ");
+                    	cordxy(6,7);scanf("%d",&dia);
+                    	cordxy(6,8);printf(" por favor ingrese un numero del 1 al 12 para el mes ");
+                    	cordxy(6,9);scanf("%d ",&mes);
+                    	cordxy(6,10);printf(" ingrese el a\244o");
+                    	cordxy(6,11);scanf("%d",&anho);
+                    	switch (mes){
+                    	case 1:
+		                   cordxy(6,15);printf("%d de enero del %d", dia,anho);
+		                 break;
+		                case 2:
+		                	cordxy(8,15);printf("%d de febrero del %d ",dia,anho);
+		                    break;
+		                case 3:
+		    	            cordxy(8,15);printf("%d de marzo del %d",dia,anho);
+		                    break;
+		                case 4:
+		        	        cordxy(8,15);printf("%d de abril del %d", dia,anho);
+		                    break;
+		                case 5:
+		            	    cordxy(8,15); printf("%d de mayo del %d",dia,anho);
+		                    break;
+		                case 6:
+		                	cordxy(8,15);printf("%d de junio del %d",dia,anho);
+		                    break;
+		                case 7:
+		                    cordxy(8,15);printf("%d de julio del %d",dia, anho);
+		                    break;
+		                case 8:
+		                	cordxy(8,15);printf("%d de agosto del %d",dia,anho);
+                            break;
+                        case 9:
+		                	cordxy(8,15);printf("%d de septiembre del %d",dia, anho);
+		                    break;
+		                case 10:
+		                	cordxy(8,15);printf("%d de octubre del %d",dia, anho);
+		                    break;
+		                case 11:
+		                	cordxy(8,15);printf("%d de noviembre del %d",dia, anho);
+		                    break;
+		                case 12:
+		                    cordxy(8,15);printf("%d de diciembre del %d",dia,anho);
+		                    break;	
+		                default :
+		                    cordxy(8,15);printf( " numero de mes no valido ");
+                    	}
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    char vucales;
+					    cordxy(6,6);printf(" ingrese una vocal: ");
+					    cordxy(6,7);scanf("%c",&vucales);
+					    switch (vucales){
+					    	case 'a':{
+					    		cordxy(8,15);printf(" el codigo ascii de la vocal 'a' es: alt + 97");
+								break;
+							}
+							case 'e':{
+					    		cordxy(8,15);printf(" el codigo ascii de la vocal 'e' es: alt + 101");
+								break;
+							}
+							case 'i':{
+					    		cordxy(8,15);printf(" el codigo ascii de la vocal 'i' es: alt + 105");
+								break;
+							}
+							case 'o':{
+					    		cordxy(8,15);printf(" el codigo ascii de la vocal 'o' es: alt + 111");
+								break;
+							}
+							case 'u':{
+					    		cordxy(8,15);printf(" el codigo ascii de la vocal 'u' es: alt + 117");
+								break;
+							}
+							default :{
+								cordxy(8,15);printf(" el caracter ingreso no coincide ");
+								break;
+							}	
+						}
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    	    int number;
+					    cordxy(6,6);printf(" ingrese un numero natural ( 1 - 9 ): ");
+					    cordxy(6,7);scanf("%d ",&number);
+					    switch (number){
+					    	case 1:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 1 es: alt + 49");
+								break;
+							}
+							case 2:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 2 es: alt + 50");
+								break;
+							}
+							case 3:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 3 es: alt + 51");
+								break;
+							}
+							case 4:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 4 es: alt + 52");
+								break;
+							}
+							case 5:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 5 es: alt + 53");
+								break;
+							}
+							case 6:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 6 es: alt + 54");
+								break;
+							}
+							case 7:{
+					    		cordxy(8,15);printf(" el codigo ascii de lal numero 7 es: alt + 55");
+								break;
+							}
+							case 8:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 8 es: alt + 56");
+								break;
+							}
+							case 9:{
+					    		cordxy(8,15);printf(" el codigo ascii del numero 9 es: alt + 57");
+								break;
+							}
+							default :{
+								cordxy(8,15);printf(" el caracter ingreso no coincide ");
+								break;
+							}	
+						}
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide ");
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 5:{
+			system("cls");
+			system("color e1");
+			char letter=1;
+			while(letter!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" MATRICES : ");
+				cordxy(6,10);printf(" a. suma de matrices simples");
+				cordxy(6,11);printf(" b. Matriz 3*3 llenado manual y resultado en suma");
+			    cordxy(6,12);printf(" c. Matriz 3*3 llenado automatico  ");
+			    cordxy(6,14);printf(" Seleccione una de las letras:");
+			    cordxy(38,14);scanf("%c",&letter);
+			    switch(letter){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+                        int i;
+                    	int a[3];
+                    	int b[3];
+                    	int c[3];
+                    	int s=3;
+                    	int t=4;
+                    	int r=10;
+                    	int q=11;
+                    	int w=18;
+                    	for (i=0;i<=2;i++){
+		                    cordxy(6,s++);printf(" ingrese un valor para a: ");
+		                    cordxy(6,t++);scanf("%d",&a[i]);
+                        	}
+	                    for (i=0;i<=2;i++){
+		                    cordxy(6,r++);printf(" ingrese un valor para b: ");
+		                    cordxy(6,q++);scanf("%d",&b[i]);
+                        	}
+	                    for (i=0;i<=2;i++){
+	                    	c[i]=a[i]+b[i];
+	                        }
+	                    for (i=0;i<=2;i++){ 
+	                        cordxy(6,w++);printf(" la suma de los vectores en C[3]*[3]: %d",c[i]);
+                            } 
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int s=2;
+			    		int r=3;
+			    		int w=13;
+					    int matriz[3][3];
+					    int matrisuma[3][3];
+					    for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+					    		cordxy(6,s++);printf(" ingrese un valor para la matriz[3]*[3]: ");
+					    		cordxy(6,r++);scanf("%d",&matriz[i][j]);
+							}
+						}
+						for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+						      matrisuma[3][3]=matriz[i][j]+matriz[i][j];
+						      cordxy(6,w++);printf("%d",matrisuma[3][3]);
+						    }
+					    }
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int w=6;
+			    		int s=6;
+					    int matriz[3][3];
+					    srand(time(0));
+					    for (i=0;i<=2;i++){
+					    	for(j=0;j<=2;j++){
+					    	 matriz[3][3]=rand();
+						     cordxy(6,w++);printf("%d",matriz[3][3]);
+							}
+						}
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide ");
+						break;
+					}
+				}
+			break;	
+			}
+		}
+		case 6:{
+			system("cls");
+			system("color e1");
+			char letters=1;
+			while(letters!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" ESTRUCTURAS : ");
+				cordxy(6,10);printf(" a. Estructura de Nombre y notas de n estudiantes");
+				cordxy(6,11);printf(" b. Estructura de Competencia segun edad ");
+			    cordxy(6,12);printf(" c. Estructura de promedios y de n alumnos ");
+			    cordxy(6,15);printf(" Seleccione una de las letras:");
+			    cordxy(38,15);scanf("%c",&letters);
+			    switch(letters){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int n;
+			    		int s=12;
+			    		cordxy(6,2);printf(" ingrese la cantidad de estudiantes que desea registrar: ");
+			    		cordxy(62,2);scanf("%d",&n);
+			    		estudiantes notas[n];
+	                    float notdef;
+	                    int i;
+	                    cordxy(6,4);printf(" por favor relacione los siguientes datos: ");
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	cin.ignore(256,'\n'); 
+                        cordxy(6,5);printf(" ingrese sus nombres: ");
+                        cordxy(6,6);fgets(notas[n].name,30,stdin);
+                        cordxy(6,7);printf(" ingrese sus apellidos: ");
+                        cordxy(6,8);fgets(notas[n].lastname, 30,stdin);
+                        cordxy(6,9);printf(" ingrese su primer nota del corte1: ");
+                        cordxy(6,10);scanf("%d",&notas[n].nota1);
+                        cordxy(6,11);printf(" ingrese  su segunda nota del corte2: ");
+                        cordxy(6,12);scanf("%d",&notas[n].nota2);
+                        cordxy(6,13);printf(" ingrese su tercer nota del corte3: ");
+                        cordxy(6,14);scanf("%d",&notas[n].nota3);
+                        notdef=((notas[n].nota1+notas[n].nota2+notas[n].nota3)/3);
+                        cordxy(6,18);printf("estudiante: %c, %c su calificacion definitiva es: %f ",notas[n].name ,notas[n].lastname,notdef);
+                        system("pause");
+                        system("cls");
+	 				    }
+			    		system("color a1");
+			    		cuadropantalla(24,80);             
+			    		for (i=1;i<=n;i++){
+			    			cordxy(6,s++);printf("estudiante: %c, %c su calificacion definitiva es: %f ",notas[n].name ,notas[n].lastname,notdef);
+						}
+	 				    
+	 				    system("pause");
+	 				    break;
+	 			    }
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    int n;
+			    		int s=12;
+			    		cordxy(6,2);printf(" ingrese la cantidad de competidores que desea registrar: ");
+			    		cordxy(63,2);scanf("%d",&n);
+			    		competidor categoria[n];
+	                    int i,edad;
+	                    cordxy(6,4);printf(" por favor relacione los siguientes datos: ");
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	cin.ignore(256,'\n'); 
+                        cordxy(6,5);printf(" ingrese sus nombres: ");
+                        cordxy(6,6);fgets(categoria[n].name,30,stdin);
+                        cordxy(6,7);printf(" ingrese sus apellidos: ");
+                        cordxy(6,8);fgets(categoria[n].lastname,30,stdin);
+                        cordxy(6,9);printf(" ingrese su sexo, digitando 1.para hombre 2.si es mujer: ");
+                        cordxy(6,10);scanf("%d",&categoria[n].sexo);
+                        cordxy(6,11);printf(" ingrese su edad: ");
+                        cordxy(6,12);scanf("%d",&categoria[n].edad);
+                        if (categoria[n].edad<=15){
+                        	 cordxy(6,18);printf("competidor: %c, %c  su categoria definitiva es: INFANTIL", categoria[n].name ,categoria[n].lastname);
+						}else{
+							if (categoria[n].edad<=30){
+								 cordxy(6,18);printf("competidor: %c, %c  su categoria definitiva es: JUVENIL", categoria[n].name ,categoria[n].lastname);
+							}else{
+								 cordxy(6,18);printf("competidor: %c, %c  su categoria definitiva es: ADULTO", categoria[n].name ,categoria[n].lastname);
+							}
+						}
+                        system("pause");
+                        system("cls");
+	 				    }
+			    	
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		int n,i;
+			    		int s=12;
+			    		cordxy(6,2);printf(" ingrese la cantidad de alumnos que desea registrar: ");
+			    		cordxy(60,2);scanf("%d",&n);
+			    		promedio alumno[n];
+	                    float notidefi;
+	                    cordxy(6,4);printf(" por favor relacione los siguientes datos: ");
+                        for(i=1;i<=n;i++){
+                        	system("color a1");
+			    		    cuadropantalla(24,80);
+                        	cin.ignore(256,'\n'); 
+                        cordxy(6,5);printf(" ingrese sus nombres: ");
+                        cordxy(6,6);fgets(alumno[n].name,30,stdin);
+                        cordxy(6,7);printf(" ingrese su genero: ");
+                        cordxy(6,8);fgets(alumno[n].sexo, 30,stdin);
+                        cordxy(6,9);printf(" ingrese su edad: ");
+                        cordxy(6,10);scanf("%d",&alumno[n].edad);
+                        cordxy(6,11);printf(" ingrese su primer nota del corte1: ");
+                        cordxy(6,12);scanf("%d",&alumno[n].nota1);
+                        cordxy(6,13);printf(" ingrese  su segunda nota del corte2: ");
+                        cordxy(6,14);scanf("%d",&alumno[n].nota2);
+                        cordxy(6,15);printf(" ingrese su tercer nota del corte3: ");
+                        cordxy(6,16);scanf("%d",&alumno[n].nota3);
+                        notidefi=((alumno[n].nota1+alumno[n].nota2+alumno[n].nota3)/3);
+                        cordxy(6,20);printf("alumno: %c, genero: %c, edad: %d ,  su calificacion definitiva es: %f",alumno[n].name, alumno[n].sexo, alumno[n].edad, notidefi);
+                        system("pause");
+                        system("cls");
+	 				    }
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		for (i=1;i<=n;i++){
+			    			cordxy(6,s++);printf("alumno: %c, genero: %c, edad: %d ,  su calificacion definitiva es: %f",alumno[n].name, alumno[n].sexo, alumno[n].edad, notidefi);
+						}
+                        system("pause");
+						break;
+					}
+				
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide ");
+						break;
+					}
+				}
+			break;	
+			}
+		}
+	/*	case 7:{
+			system("cls");
+			system("color e1");
+			char letter=1;
+			while(letter!=0){
+				cuadropantalla(24,80);
+				cordxy(6,8);printf(" PUNTEROS : ");
+				cordxy(6,10);printf(" a. ");
+				cordxy(6,11);printf(" b. ");
+			    cordxy(6,12);printf(" c. ");
+			    cordxy(6,14);printf(" Seleccione una de las letras:");
+			    cordxy(38,14);scanf(letter;
+			    switch(letter){
+			    	case 'a' :{
+			    		system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		
+	                    system("pause");
+						break;
+					}
+					case 'b':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+					    
+                        system("pause");
+						break;
+					}
+					case 'c':{
+						system("cls");
+			    		system("color a1");
+			    		cuadropantalla(24,80);
+			    		
+                        system("pause");
+						break;
+					}
+					default :{
+						cordxy(8,12);printf(" la letra ingresada no coincide ");
+						break;
+					}
+				}
+			break;	
+			}
+		}*/
+		case 0:{
+			system("cls");
+			system("color a1");          
+			cuadropantalla(24,80);
+			cordxy(8,12);printf(" GOD BYE \n");
+			break;
+		}
+		default :{
+			system("color a1");
+			cuadropantalla(24,80);
+			cordxy(8,12);printf(" El caracter ingresado no coincide  \n");
+			system("pause");
+			break;
+		}
+	}
+	}
+    system("pause");
+	return 0;
+}
